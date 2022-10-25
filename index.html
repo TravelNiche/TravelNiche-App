@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TravelNiche</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-  <!--Do you guys know of a shortcut to list all countries rather
-  than typing them individually?-->
-  <h3> 
-    <label for="Destination">Destination</label>
-        <select name="Destination" id="choose country">
-  <option value="Choose">choose an option</option>
-      <option value="United States"> United States Of America</option>
-  <option value="England">United Kingdom</option>
-      <option value="México">México</option>
-  <option value="Italy">Italy</option>
-      <option value="France">France</option>
-  <option value="Guatemala">Guatemala</option>
-      <option value="Egypt">Egypt</option>
-  <option value="Germany"> Germany</option>
+    <h1>TravelNiche</h1>
+    <label for="Location">Location</label>
+    <select name="Destination" id="choose a city">
+<option value="Choose">choose a city</option>
+  <option value="United States"> United States Of America</option>
 
-</select>
-
-
-<!--Not sure how to incorporate date ranges and number of guests. 
-  Should we make these two different elements rather than 1?-->
-  </h3>
-  
-      <h3> Date Range
-  <input type="datetime-local" id="Test_DatetimeLocal">
-</h3>
-      </h3>
-
-  <h3> Suggested Activities
-
-  </h3>
-  
-       <h3> Trending around you 
-
-      </h3>
-
-<script src="./assets/js/script.js"></script>
+    <div class="dropdown" data-control="checkbox-dropdown">
+      <label class="dropdown-label">Bars</label>
+      
+      <div class="dropdown-list">
+        <a href="#" data-toggle="check-all" class="dropdown-option">
+          Check All  
+        </a>
+        
+        <label class="dropdown-option">
+          <input type="checkbox" name="dropdown-group" value="wheelchair" />
+          wheelchair
+        </label>
+        
+        <label class="dropdown-option">
+          <input type="checkbox" name="dropdown-group" value="Vegan Friendly" />
+          Vegan Friendly
+        </label>
+        
+        <label class="dropdown-option">
+          <input type="checkbox" name="dropdown-group" value="Rooftop" />
+          Rooftop
+        </label>
+        
+        <label class="dropdown-option">
+          <input type="checkbox" name="dropdown-group" value="Open now" />
+          Open now
+        </label>
+        
+        <label class="dropdown-option">
+          <input type="checkbox" name="dropdown-group" value="Happy Hour" />
+          Happy Hour
+        </label>      
+      </div>
+    </div> 
 </body>
 </html>
