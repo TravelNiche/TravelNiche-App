@@ -104,15 +104,14 @@ function searchLocation() {
   mainContainerEl.classList.add('hide');
 }
 
-let dateRangePickerEl = document.querySelector(`[value="${moment().format('L')}"]`);
-
-$(function () {
-  $('input[name="daterange"]').daterangepicker({
-    opens: 'left'
-  }, function (start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
-});
-
+// //date picker
+// let dateRangePickerEl = document.querySelector(`[value="${moment().format('L')}"]`);
+// $(function () {
+//   $('input[name="daterange"]').daterangepicker({
+//     opens: 'left'
+//   }, function (start, end, label) {
+//     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+//   });
+// });
 
 findButtonEl.addEventListener('click', searchLocation);
