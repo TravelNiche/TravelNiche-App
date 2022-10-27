@@ -4,6 +4,16 @@ const searchResultEl = document.querySelector('#search-result');
 const mainContainerEl = document.querySelector('#main-container');
 const secondPageEl = document.querySelector('#second-page');
 
+let barName = [];
+let barPhoneNumber = [];
+let barPrice = [];
+let barRating = [];
+let barURL = [];
+let barStatus = [];
+let barImage = [];
+let barReviewCount = [];
+
+
 
 //refreshes the results of autocomplete with every key action
 $('#search').on('keyup', function () {
@@ -48,7 +58,7 @@ $(document).on('click', '#search-result option', function () {
 
 //searches the location and gets Yelp data
 function searchLocation() {
-  let yelpAPI = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${searchEl.value}&attrs=bar`;
+  let yelpAPI = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${searchEl.value}`;
 
   fetch(yelpAPI, {
     headers: { Authorization: 'Bearer 3FBTNebxKSbfJxZAZHGeldEJJ4C2qbP1hcVru2evp3VpDMBukDxQQkShPia8JuYiJuu8aQk1bCuXBGPhscsgO0XjBW4jjMHO_x2lV3TiIqzxnTFxe1H1KGmrqx1XY3Yx' }
@@ -61,9 +71,29 @@ function searchLocation() {
       console.log(data);
 
       for (let i = 0; i < data.businesses.length; i++) {
-        let listOfBusinesses = document.createElement('ol');
-        secondPageEl.appendChild(listOfBusinesses);
-        listOfBusinesses.textContent = data.businesses[i].name; //gets the name of the businesses
+       
+        
+        for (let j = 0; j < data.businesses[i].categories.length; j++) {
+          if (data.businesses[i].categories[j].title.includes('Bars')) {
+
+            barName[j] = data.businesses[i].name;
+            barPhoneNumber[j] = data.businesses[i].display_phone;
+            barPrice[j] = data.businesses[i].price;
+            barRating[j] = data.businesses[i].rating;
+            barURL[j] = data.businesses[i].url;
+            barStatus[j] = data.businesses[i].is_closed;
+            barImage[j] = data.businesses[i].image_url;
+            barReviewCount[j] = data.businesses[i].review_count;
+
+            let listOfBusinesses = document.createElement('div');
+            secondPageEl.appendChild(listOfBusinesses);
+            listOfBusinesses.textContent = barName[j] + barPhoneNumber[j] + barPrice[j] + barRating[j] + barURL[j] + barStatus[j] + barImage[j] + barReviewCount[j]; //gets the name of the businesses
+
+          }
+        }
+        
+
+        
         // listOfBusinesses.textContent = data.businesses[i].location.display_address;
       }
 
