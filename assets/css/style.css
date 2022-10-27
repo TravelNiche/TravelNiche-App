@@ -10,7 +10,7 @@
 }
 
 body {
-    background-image: url('assets/images.BEER.gif');
+    /* background-image: url('TravelNiche-App/assets/images/BEER.gif'); */
     background-size: 100%;
     background-repeat: repeat-y;
     background-attachment: fixed;
@@ -47,7 +47,7 @@ body {
     padding: 10px;
     margin: 10px;
     display: grid;
-    margin-top: 300px;
+    margin-top: -400px;
     width: 80%;
 }
 
