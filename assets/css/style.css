@@ -16,11 +16,11 @@ body {
     background-attachment: fixed;
     height: 100%;
     width: 100%;
+
 }
 
 body {
     text-align: -webkit-center;
-
 }
 
 #search-result {
@@ -32,7 +32,7 @@ body {
 
 }
 
-#date-picker {
+/* #date-picker {
     text-align: center;
     margin-bottom: 10px;
     width: 100%;
@@ -40,14 +40,14 @@ body {
 
 #date-picker:hover {
     cursor: pointer;
-}
+} */
 
 #main-container {
     border: solid 2px;
     padding: 10px;
     margin: 10px;
     display: grid;
-    margin-top: -400px;
+    margin-top: -500px;
     width: 80%;
 }
 
@@ -123,11 +123,15 @@ dropdown-check-list {
 }
 
 .button:hover {
-    background-color: rgb(3, 126, 28);
+    background-color: rgb(252, 185, 40);
     color: white;
     transition: 0.3s;
 }
 
 .hide {
     display: none !important;
+}
+
+.card{
+    margin: 15px;
 }
