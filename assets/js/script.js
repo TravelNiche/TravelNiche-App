@@ -3,15 +3,20 @@ const findButtonEl = document.querySelector('#find-button');
 const searchResultEl = document.querySelector('#search-result');
 const mainContainerEl = document.querySelector('#main-container');
 const secondPageEl = document.querySelector('#second-page');
+const barStatusEl = document.querySelector('#bar-status');
+
 
 let barName = [];
 let barPhoneNumber = [];
 let barPrice = [];
 let barRating = [];
 let barURL = [];
-let barStatus = [];
+let barIsClosed = [];
+let barStatus;
 let barImage = [];
-let barReviewCount = [];
+let barAddress = [];
+let businessCard;
+
 
 
 
@@ -82,20 +87,43 @@ function searchLocation() {
             barPrice[j] = data.businesses[i].price;
             barRating[j] = data.businesses[i].rating;
             barURL[j] = data.businesses[i].url;
-            barStatus[j] = data.businesses[i].is_closed;
+            barIsClosed[j] = data.businesses[i].is_closed;
             barImage[j] = data.businesses[i].image_url;
-            barReviewCount[j] = data.businesses[i].review_count;
+            barAddress[j] = data.businesses[i].location.display_address[0] + ' ' + data.businesses[i].location.display_address[1];
 
             let listOfBusinesses = document.createElement('div');
             secondPageEl.appendChild(listOfBusinesses);
-            listOfBusinesses.textContent = barName[j] + barPhoneNumber[j] + barPrice[j] + barRating[j] + barURL[j] + barStatus[j] + barImage[j] + barReviewCount[j]; //gets the name of the businesses
+            listOfBusinesses.textContent = barName[j] + barPhoneNumber[j] + barPrice[j] + barRating[j] + barURL[j] + barIsClosed[j] + barImage[j] + barAddress[j]; //gets the name of the businesses
 
+            if (barIsClosed) {
+              barStatus = 'Open Now';
+            }else{
+              barStatus = 'Closed';
+            }
+
+
+            //Card creation using BootStrap
+            businessCard = 
+          `<div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="${barImage[j]}" alt="Business Image">
+            <div class="card-body">
+              <h5 class="card-title">${barName[j]}</h5>
+              <p class="card-text">${barAddress[j]}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">${barPrice[j] + ' - ' + barRating[j]}</li>
+              <li id='bar-status' class="list-group-item">${barStatus}</li>
+              <li class="list-group-item">${barPhoneNumber[j]}</li>
+            </ul>
+            <div class="card-body">
+              <a style='text-decoration: none' href="${barURL[j]}" target="_blank" class="card-link">See in Yelp</a>
+            </div>
+          </div>`;
+          
+          listOfBusinesses.innerHTML = businessCard;
+          secondPageEl.appendChild(listOfBusinesses);
           }
         }
-        
-
-        
-        // listOfBusinesses.textContent = data.businesses[i].location.display_address;
       }
 
     }).catch(error => console.log('error', error));

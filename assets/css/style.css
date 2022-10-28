@@ -78,3 +78,7 @@ body {
 .hide {
     display: none !important;
 }
+
+.card{
+    margin: 15px;
+}
