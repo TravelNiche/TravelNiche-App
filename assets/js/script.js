@@ -4,6 +4,9 @@ const searchResultEl = document.querySelector('#search-result');
 const mainContainerEl = document.querySelector('#main-container');
 const secondPageEl = document.querySelector('#second-page');
 const barStatusEl = document.querySelector('#bar-status');
+const backButtonEl = document.querySelector('#back-button');
+const backgroundBeerEl = document.querySelector('#background-beer');
+
 
 
 let barName = [];
@@ -16,6 +19,7 @@ let barStatus;
 let barImage = [];
 let barAddress = [];
 let businessCard;
+let dropdown;
 
 
 
@@ -75,10 +79,11 @@ function searchLocation() {
     .then(function (data) { //then lists the data to be used
       console.log(searchEl.value)
       console.log(data);
+      backButtonEl.classList.remove('hide');
+
 
       for (let i = 0; i < data.businesses.length; i++) {
        
-        
         for (let j = 0; j < data.businesses[i].categories.length; j++) {
           if (data.businesses[i].categories[j].title.includes('Bars')) {
 
@@ -101,7 +106,6 @@ function searchLocation() {
               barStatus = 'Closed';
             }
 
-
             //Card creation using BootStrap
             businessCard = 
           `<div class="card" style="width: 18rem;">
@@ -111,7 +115,7 @@ function searchLocation() {
               <p class="card-text">${barAddress[j]}</p>
             </div>
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">${barPrice[j] + ' - ' + barRating[j]}</li>
+              <li class="list-group-item">${barPrice[j] + ' - ' + ' ' + getStars(barRating[j]) + barRating[j]}</li>
               <li id='bar-status' class="list-group-item">${barStatus}</li>
               <li class="list-group-item">${barPhoneNumber[j]}</li>
             </ul>
@@ -122,7 +126,43 @@ function searchLocation() {
           
           listOfBusinesses.innerHTML = businessCard;
           secondPageEl.appendChild(listOfBusinesses);
+
+          dropdown = 
+          `<div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item" type="button">Action</button>
+            <button class="dropdown-item" type="button">Another action</button>
+            <button class="dropdown-item" type="button">Something else here</button>
+          </div>
+        </div>`;
           }
+        
+          //function to get star symbols
+          function getStars(rating) {
+          
+            // Round to nearest half
+            rating = Math.round(rating * 2) / 2;
+            let output = [];
+          
+            // Append all the filled whole stars
+            for (var i = rating; i >= 1; i--)
+              output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+          
+            // If there is a half a star, append it
+            if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+          
+            // Fill the empty stars
+            for (let i = (5 - rating); i >= 1; i--)
+              output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+          
+            return output.join('');
+          
+          }
+          
+          
         }
         
 //Dropdown CSS//
@@ -144,6 +184,7 @@ checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
 
   // window.location.replace("nextPage.html");
   mainContainerEl.classList.add('hide');
+  backgroundBeerEl.classList.add('hide');
 }
 
 // //date picker
@@ -156,4 +197,11 @@ checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
 //   });
 // });
 
+function goBack() {
+  window.location.reload();
+}
+
+
 findButtonEl.addEventListener('click', searchLocation);
+backButtonEl.addEventListener('click', goBack);
+
