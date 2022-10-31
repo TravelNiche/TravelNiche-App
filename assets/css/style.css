@@ -1,23 +1,28 @@
+/* Universal Selector*/
 * {
     padding: 0;
     margin: 0;
     border-radius: 10px;
 }
 
+/* Background GIF - 1st Page */
 #background-beer {
     width: 100%;
     height: 100%;
 }
 
+/* Background Image - 2nd Page */
 #background-bar{
     width: 100%;
     height: 100%;
 }
 
+/* Background Container */
 #background-container{
     background: url('../images/barBackground.jpeg');
 }
 
+/* Body */
 body {
     /* background-image: url('TravelNiche-App/assets/images/BEER.gif'); */
     background-size: 100%;
@@ -25,9 +30,11 @@ body {
     background-attachment: fixed;
     height: 100%;
     width: 100%;
-    
+    text-align: -webkit-center;
+
 }
 
+/* 'Find Bars' Button */
 #find-button{
     width: fit-content;
     justify-self: center;
@@ -35,19 +42,21 @@ body {
     padding: 10px;
 }
 
-body {
-    text-align: -webkit-center;
-}
-
-
+/* Autocomplete Search Result */
 #search-result {
     background: #fff;
 }
 
+/* Autocomplete Search Result - Active State */
 #search-result.active {
     display: block;
     width: fit-content;
     justify-self: center;
+}
+
+/* Autocomplete Search Result - Hover */
+#search-result:hover {
+    cursor: pointer;
 }
 
 /* #date-picker {
@@ -60,6 +69,7 @@ body {
     cursor: pointer;
 } */
 
+/* Main Container */
 #main-container {
     border: solid 2px;
     padding: 10px;
@@ -69,14 +79,12 @@ body {
     width: 80%;
 }
 
-#search-result:hover {
-    cursor: pointer;
-}
-
+/* Container Fluid */
 .container-fluid {
     padding: 0;
 }
 
+/* Search Bar */
 #search {
     margin-bottom: 10px;
     width: 50%;
@@ -86,35 +94,43 @@ body {
     border-radius: 25px;
 }
 
+/* Buttons */
 .button {
     border-radius: 5px;
     padding: 5px;
+    
 }
 
+/* Buttons - Hover */
 .button:hover {
     background-color: rgb(252, 185, 40);
     color: white;
     transition: 0.3s;
 }
 
+/* Hide */
 .hide {
     display: none !important;
 }
 
+/* Cards */
 .card{
     margin: 15px;
     width: 100%;
     height: 100%;
 }
 
+/* 'Go Back' Button */
 #back-button{
-    margin: 15px 15px 0 15px;
+    margin: 5px 15px 0 15px;
 }
 
+/* Card Images */
 .card-img-top{
     height: -webkit-fill-available;
 }
 
+/* Checklist Container */
 #checklist-container{
     color: #fff;
     background-color: #3c2f0d;
@@ -124,14 +140,21 @@ body {
     margin: 10px;
 }
 
-#second-page{
-    
-}
-
+/* Title */
 #title{
     font-family: 'Lobster', cursive !important;
     font-size: xx-large;
     color: black;
 }
 
+/* City List */
+#city-list{
+    display: inline-grid;
+    margin-top: 10px;
+}
+
+/* City List Buttons */
+#city-list button{
+    margin-bottom: 5px
+}
 
