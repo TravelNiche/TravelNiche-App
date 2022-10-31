@@ -1,3 +1,4 @@
+//Query elements are created
 const searchEl = document.querySelector('#search');
 const findButtonEl = document.querySelector('#find-button');
 const searchResultEl = document.querySelector('#search-result');
@@ -8,9 +9,10 @@ const backButtonEl = document.querySelector('#back-button');
 const backgroundBeerEl = document.querySelector('#background-beer');
 const cardContainerEl = document.querySelector('#card-container');
 const checklistContainerEl = document.querySelector('#checklist-container');
+const cityListEl = document.querySelector('#city-list');
+const recentSearchEl = document.querySelector('#recent-search');
 
-
-
+//Defining as Global Variables
 let barName = [];
 let barPhoneNumber = [];
 let barPrice = [];
@@ -24,9 +26,13 @@ let businessCard;
 let checklist;
 let price;
 let isPriceClicked = false;
+let citiesLocal;
+let cityNames;
+let cityListLocal = [];
+let dResult = [];
 
 
-//refreshes the results of autocomplete with every key action
+//Refreshes the results of autocomplete with every key action
 $('#search').on('keyup', function () {
   let sVal = $(this).val();
 
@@ -35,9 +41,8 @@ $('#search').on('keyup', function () {
   }
 });
 
-let dResult = [];
 
-//autocomplete API
+//Geoapify Autocomplete Location API
 function autoComplete() {
   var requestOptions = {
     method: 'GET',
@@ -60,16 +65,14 @@ function autoComplete() {
     .catch(error => console.log('error', error));
 }
 
-//chooses the element from the dropdown and clears the dropdown after selected
+//Chooses the element from the dropdown and clears the dropdown after selected
 $(document).on('click', '#search-result option', function () {
   $('#search').val($(this).text());
   $('#search-result').html();
   $('#search-result').removeClass('active');
 })
 
- 
-
-//searches the location and gets Yelp data
+//Searches the location and gets Yelp data using Yelp Fusion API - Follow the Heroku guide in the console to temporary access the API
 function searchLocation() {
 
   let yelpAPI = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${searchEl.value}`;
@@ -78,7 +81,16 @@ function searchLocation() {
     yelpAPI = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${searchEl.value}&price=${price}`;
   }
 
-  
+  //If statement controls if the searchEl is empty or not to help creating buttons
+  if (searchEl.value == '') {
+    return;
+  }else{
+    cityListEl.innerHTML = '';
+    citiesLocal = localStorage.setItem(searchEl.value, '');
+    createButtons();
+
+  }
+
 
   fetch(yelpAPI, {
     headers: { Authorization: 'Bearer 3FBTNebxKSbfJxZAZHGeldEJJ4C2qbP1hcVru2evp3VpDMBukDxQQkShPia8JuYiJuu8aQk1bCuXBGPhscsgO0XjBW4jjMHO_x2lV3TiIqzxnTFxe1H1KGmrqx1XY3Yx' }
@@ -146,7 +158,7 @@ function searchLocation() {
             //   barStatus = 'Closed';
             // }
             
-            //Card creation using BootStrap 5.2.2
+            //Card creation using BootStrap 5.2.2 and Bulma
             businessCard = 
           `<div class="card" style="width: 22rem;">
             <img class="card-img-top" src="${barImage[j]}" alt="Business Image">
@@ -195,44 +207,34 @@ function searchLocation() {
           
         }
       
-        // listOfBusinesses.textContent = data.businesses[i].location.display_address;
       }
       //only one checkbox is selected
       $('input.check').on('change', function() {
         $('input.check').not(this).prop('checked', false);  
     });
     
-    // window.location.replace("nextPage.html");
     mainContainerEl.classList.add('hide');
     backgroundBeerEl.classList.add('hide');
 
+    //Gets the click data from checkboxes and refreshes the search again for each price range selector
     $(document).on('click', '#1', function () {
       isPriceClicked = true;
       price = 1;
-      // cardContainerEl.innerHTML = '';
-      // checklistContainerEl.innerHTML = '';
-
       searchLocation();
     })
     $(document).on('click', '#2', function () {
       isPriceClicked = true;
       price = 2;
-      // cardContainerEl.innerHTML = '';
-      // checklistContainerEl.innerHTML = '';
       searchLocation();
     })
     $(document).on('click', '#3', function () {
       isPriceClicked = true;
       price = 3;
-      // cardContainerEl.innerHTML = '';
-      // checklistContainerEl.innerHTML = '';
       searchLocation();
     })
     $(document).on('click', '#4', function () {
       isPriceClicked = true;
       price = 4;
-      // cardContainerEl.innerHTML = '';
-      // checklistContainerEl.innerHTML = '';
       searchLocation();
     })
 
@@ -241,7 +243,6 @@ function searchLocation() {
 
   
 }
-
  
 // //date picker
 // let dateRangePickerEl = document.querySelector(`[value="${moment().format('L')}"]`);
@@ -253,6 +254,7 @@ function searchLocation() {
 //   });
 // });
 
+//Takes the user to the home page
 function goBack() {
   window.location.reload();
 }
@@ -311,11 +313,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+//Create city buttons from localStorage
+function createButtons() {
+  cityNames = Object.keys(localStorage);
+
+  //Buttons are created dynamically and class 'button' are added dynamically
+  for (let i = 0; i < localStorage.length; i++) {
+    cityListLocal[i] = cityNames[i];
+    cityButton = document.createElement('button');
+    cityButtonEl = cityButton.classList.add('button');
+    cityButton.onclick = function(){getButtonValue(this)}; //Runs the getButtonValue(), if a city is clicked
+    cityButtonEl = cityListEl.appendChild(cityButton);
+    cityButtonEl.textContent = cityListLocal[i];   
+}   
+}
+
+//Init function
+createButtons();
+
+//Gets the text data from the buttons and refreshes the search 
+function getButtonValue(value) {
+  var buttonValue = value.innerHTML;
+  searchEl.value = buttonValue;
+  console.log(buttonValue);
+  searchLocation();
+}
 
 
-
-
-
+//Event listeners
 findButtonEl.addEventListener('click', searchLocation);
 backButtonEl.addEventListener('click', goBack);
 
