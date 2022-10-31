@@ -1,14 +1,28 @@
+/* Universal Selector*/
 * {
     padding: 0;
     margin: 0;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
-#background {
+/* Background GIF - 1st Page */
+#background-beer {
     width: 100%;
     height: 100%;
 }
 
+/* Background Image - 2nd Page */
+#background-bar{
+    width: 100%;
+    height: 100%;
+}
+
+/* Background Container */
+#background-container{
+    background: url('../images/barBackground.jpeg');
+}
+
+/* Body */
 body {
     /* background-image: url('TravelNiche-App/assets/images/BEER.gif'); */
     background-size: 100%;
@@ -16,23 +30,36 @@ body {
     background-attachment: fixed;
     height: 100%;
     width: 100%;
-}
-
-body {
     text-align: -webkit-center;
 
 }
 
+/* 'Find Bars' Button */
+#find-button{
+    width: fit-content;
+    justify-self: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+/* Autocomplete Search Result */
 #search-result {
     background: #fff;
 }
 
+/* Autocomplete Search Result - Active State */
 #search-result.active {
     display: block;
-
+    width: fit-content;
+    justify-self: center;
 }
 
-#date-picker {
+/* Autocomplete Search Result - Hover */
+#search-result:hover {
+    cursor: pointer;
+}
+
+/* #date-picker {
     text-align: center;
     margin-bottom: 10px;
     width: 100%;
@@ -40,37 +67,43 @@ body {
 
 #date-picker:hover {
     cursor: pointer;
-}
+} */
 
+/* Main Container */
 #main-container {
     border: solid 2px;
     padding: 10px;
     margin: 10px;
     display: grid;
-    margin-top: -400px;
+    margin-top: -500px;
     width: 80%;
 }
 
-#search-result:hover {
-    cursor: pointer;
-}
-
+/* Container Fluid */
 .container-fluid {
     padding: 0;
 }
 
+/* Search Bar */
 #search {
     margin-bottom: 10px;
-    width: 100%;
+    width: 50%;
     text-align: center;
+    justify-self: center;
+    padding: 5px;
+    border-radius: 25px;
 }
 
+/* Buttons */
 .button {
-    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+    
 }
 
+/* Buttons - Hover */
 .button:hover {
-    background-color: rgb(3, 126, 28);
+    background-color: rgb(252, 185, 40);
     color: white;
     transition: 0.3s;
 }
@@ -89,6 +122,53 @@ body {
     background-color: #2980B9;
   } */ */
 
+/* Hide */
 .hide {
     display: none !important;
 }
+
+/* Cards */
+.card{
+    margin: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+/* 'Go Back' Button */
+#back-button{
+    margin: 5px 15px 0 15px;
+}
+
+/* Card Images */
+.card-img-top{
+    height: -webkit-fill-available;
+}
+
+/* Checklist Container */
+#checklist-container{
+    color: #fff;
+    background-color: #3c2f0d;
+    font-size: large;
+    width: fit-content;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* Title */
+#title{
+    font-family: 'Lobster', cursive !important;
+    font-size: xx-large;
+    color: black;
+}
+
+/* City List */
+#city-list{
+    display: inline-grid;
+    margin-top: 10px;
+}
+
+/* City List Buttons */
+#city-list button{
+    margin-bottom: 5px
+}
+
