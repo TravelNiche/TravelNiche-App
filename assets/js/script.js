@@ -6,6 +6,8 @@ const secondPageEl = document.querySelector('#second-page');
 const barStatusEl = document.querySelector('#bar-status');
 const backButtonEl = document.querySelector('#back-button');
 const backgroundBeerEl = document.querySelector('#background-beer');
+const cardContainerEl = document.querySelector('#card-container');
+const checklistContainerEl = document.querySelector('#checklist-container');
 
 
 
@@ -19,9 +21,9 @@ let barStatus;
 let barImage = [];
 let barAddress = [];
 let businessCard;
-let dropdown;
-
-
+let checklist;
+let price;
+let isPriceClicked = false;
 
 
 //refreshes the results of autocomplete with every key action
@@ -65,9 +67,17 @@ $(document).on('click', '#search-result option', function () {
   $('#search-result').removeClass('active');
 })
 
+ 
+
 //searches the location and gets Yelp data
 function searchLocation() {
+
   let yelpAPI = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${searchEl.value}`;
+
+  if (isPriceClicked) {
+    yelpAPI = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${searchEl.value}&price=${price}`;
+  }
+
   
 
   fetch(yelpAPI, {
@@ -79,8 +89,36 @@ function searchLocation() {
     .then(function (data) { //then lists the data to be used
       console.log(searchEl.value)
       console.log(data);
+      cardContainerEl.innerHTML = '';
+      checklistContainerEl.innerHTML = '';
+      
+      //If the search box is not empty, prints go back button and checkboxes
+    if (searchEl.value !== '') {
+        
       backButtonEl.classList.remove('hide');
+      
+      //Checklist Creation Using Bulma
+      let checklistContainer = document.createElement('div');
+      secondPageEl.appendChild(checklistContainer);
 
+      checklist = 
+      `<input id='1' class='check' type="checkbox">
+        $
+
+        <input id='2' class='check' type="checkbox">
+       $$
+
+        <input id='3' class='check' type="checkbox">
+        $$$
+
+        <input id='4' class='check' type="checkbox">
+        $$$$
+      `;
+
+      checklistContainer.innerHTML = checklist;
+      secondPageEl.appendChild(checklistContainer);
+      checklistContainerEl.appendChild(checklistContainer);
+      }
 
       for (let i = 0; i < data.businesses.length; i++) {
        
@@ -98,17 +136,19 @@ function searchLocation() {
 
             let listOfBusinesses = document.createElement('div');
             secondPageEl.appendChild(listOfBusinesses);
-            listOfBusinesses.textContent = barName[j] + barPhoneNumber[j] + barPrice[j] + barRating[j] + barURL[j] + barIsClosed[j] + barImage[j] + barAddress[j]; //gets the name of the businesses
 
-            if (barIsClosed) {
-              barStatus = 'Open Now';
-            }else{
-              barStatus = 'Closed';
-            }
+            
+            // listOfBusinesses.textContent = barName[j] + barPhoneNumber[j] + barPrice[j] + barRating[j] + barURL[j] + barIsClosed[j] + barImage[j] + barAddress[j]; //gets the details of the businesses
 
-            //Card creation using BootStrap
+            // if (barIsClosed) {
+            //   barStatus = 'Open Now';
+            // }else{
+            //   barStatus = 'Closed';
+            // }
+            
+            //Card creation using BootStrap 5.2.2
             businessCard = 
-          `<div class="card" style="width: 18rem;">
+          `<div class="card" style="width: 22rem;">
             <img class="card-img-top" src="${barImage[j]}" alt="Business Image">
             <div class="card-body">
               <h5 class="card-title">${barName[j]}</h5>
@@ -116,30 +156,21 @@ function searchLocation() {
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">${barPrice[j] + ' - ' + ' ' + getStars(barRating[j]) + barRating[j]}</li>
-              <li id='bar-status' class="list-group-item">${barStatus}</li>
               <li class="list-group-item">${barPhoneNumber[j]}</li>
             </ul>
             <div class="card-body">
               <a style='text-decoration: none' href="${barURL[j]}" target="_blank" class="card-link">See in Yelp</a>
             </div>
           </div>`;
-          
+         
+
           listOfBusinesses.innerHTML = businessCard;
           secondPageEl.appendChild(listOfBusinesses);
-
-          dropdown = 
-          `<div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Something else here</button>
-          </div>
-        </div>`;
+          cardContainerEl.appendChild(listOfBusinesses);
+          
           }
-        
+
+
           //function to get star symbols
           function getStars(rating) {
           
@@ -152,7 +183,7 @@ function searchLocation() {
               output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
           
             // If there is a half a star, append it
-            if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+            if (i == .5) output.push('<i class="fa fa-star-half" aria-hidden="true" style="color: gold;"></i>&nbsp;');
           
             // Fill the empty stars
             for (let i = (5 - rating); i >= 1; i--)
@@ -162,31 +193,56 @@ function searchLocation() {
           
           }
           
-          
         }
-        
-//Dropdown CSS//
-var checkList = document.getElementById('list1');
-checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
-  if (checkList.classList.contains('visible'))
-    checkList.classList.remove('visible');
-  else
-    checkList.classList.add('visible');
-}
-
-//End of attachment dropdown//
-
-        
+      
         // listOfBusinesses.textContent = data.businesses[i].location.display_address;
       }
+      //only one checkbox is selected
+      $('input.check').on('change', function() {
+        $('input.check').not(this).prop('checked', false);  
+    });
+    
+    // window.location.replace("nextPage.html");
+    mainContainerEl.classList.add('hide');
+    backgroundBeerEl.classList.add('hide');
+
+    $(document).on('click', '#1', function () {
+      isPriceClicked = true;
+      price = 1;
+      // cardContainerEl.innerHTML = '';
+      // checklistContainerEl.innerHTML = '';
+
+      searchLocation();
+    })
+    $(document).on('click', '#2', function () {
+      isPriceClicked = true;
+      price = 2;
+      // cardContainerEl.innerHTML = '';
+      // checklistContainerEl.innerHTML = '';
+      searchLocation();
+    })
+    $(document).on('click', '#3', function () {
+      isPriceClicked = true;
+      price = 3;
+      // cardContainerEl.innerHTML = '';
+      // checklistContainerEl.innerHTML = '';
+      searchLocation();
+    })
+    $(document).on('click', '#4', function () {
+      isPriceClicked = true;
+      price = 4;
+      // cardContainerEl.innerHTML = '';
+      // checklistContainerEl.innerHTML = '';
+      searchLocation();
+    })
+
 
     }).catch(error => console.log('error', error));
 
-  // window.location.replace("nextPage.html");
-  mainContainerEl.classList.add('hide');
-  backgroundBeerEl.classList.add('hide');
+  
 }
 
+ 
 // //date picker
 // let dateRangePickerEl = document.querySelector(`[value="${moment().format('L')}"]`);
 // $(function () {
@@ -200,6 +256,64 @@ checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
 function goBack() {
   window.location.reload();
 }
+
+
+//Modal Creation Using Bulma
+document.addEventListener('DOMContentLoaded', () => {
+    
+  
+  // Functions to open and close a modal
+  function openModal($el) {
+    if (searchEl.value !== '') {
+      return;
+    }
+    $el.classList.add('is-active');
+    
+  }
+
+  function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
+
+  function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+  }
+
+  // Add a click event on buttons to open a specific modal
+  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+      openModal($target);
+    });
+  });
+
+  // Add a click event on various child elements to close the parent modal
+  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+      closeModal($target);
+    });
+  });
+
+  // Add a keyboard event to close all modals
+  document.addEventListener('keydown', (event) => {
+    const e = event || window.event;
+
+    if (e.keyCode === 27) { // Escape key
+      closeAllModals();
+    }
+  });
+
+});
+
+
+
+
 
 
 findButtonEl.addEventListener('click', searchLocation);
