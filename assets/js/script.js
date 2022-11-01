@@ -148,6 +148,7 @@ function searchLocation() {
 
             let listOfBusinesses = document.createElement('div');
             secondPageEl.appendChild(listOfBusinesses);
+            listOfBusinesses.setAttribute("class", "col-md-6 col-sm-12 col-lg-4")
 
 
             // listOfBusinesses.textContent = barName[j] + barPhoneNumber[j] + barPrice[j] + barRating[j] + barURL[j] + barIsClosed[j] + barImage[j] + barAddress[j]; //gets the details of the businesses
