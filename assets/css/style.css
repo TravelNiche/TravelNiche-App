@@ -20,6 +20,10 @@
 /* Background Container */
 #background-container{
     background: url('../images/barBackground.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 /* Body */
@@ -119,6 +123,11 @@ body {
     width: 100%;
     height: 100%;
 }
+
+/*#card-container {
+    display: flex;
+    flex-wrap: wrap;
+}*/
 
 /* 'Go Back' Button */
 #back-button{

@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://momentjs.com/downloads/moment.js">
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
@@ -14,59 +15,74 @@
 </head>
 
 <body>
-
+  <!-- <style>
+  body {
+      background-image: url('./assets/images/BEER.gif');
+      background-repeat: no-repeat;
+    }
+  </style> -->
   <header>
 
   </header>
-  
+
   <!-- Background GIF for the First Page -->
   <img src="./assets/images/BEER.gif" alt="Beer" id="background-beer">
-
+  
   <div id="background-container">
     <!-- Main Container -->
-  <section id="main-container">
-    <h1 id="title">TravelNiche - Bar Locator</h1>
-    <input id="search" type="search" placeholder="Search for a location to find the bars we choose for you!" aria-label="Search">
-    <datalist id="search-result"></datalist>
-    <!-- <input id="date-picker" type="text" name="daterange" value="" /> -->
-    <button id="find-button" class="button js-modal-trigger" type="submit" data-target="modal-js-example">Find Bars!</button>
+    <section id="main-container">
+      <h1 id="title">TravelNiche - Bar Locator</h1>
+      <input id="search" type="search" placeholder="Search for a location to find the bars we choose for you!"
+        aria-label="Search">
+      <datalist id="search-result"></datalist>
+      <!-- <input id="date-picker" type="text" name="daterange" value="" /> -->
+      <button id="find-button" class="button js-modal-trigger" type="submit" data-target="modal-js-example">Find
+        Bars!</button>
 
-    <!-- Modal Creation Using Bulma -->
-    <div id="modal-js-example" class="modal">
-      <div class="modal-background"></div>
-    
-      <div class="modal-content">
-        <div class="box tag is-danger">
-          <p>Location input is missing, can't search for a bar. Try again.</p></div>
+      <!-- Modal Creation Using Bulma -->
+      <div id="modal-js-example" class="modal">
+        <div class="modal-background"></div>
+
+        <div class="modal-content">
+          <div class="box tag is-danger">
+            <p>Location input is missing, can't search for a bar. Try again.</p>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
       </div>
-      <button class="modal-close is-large" aria-label="close"></button>
-    </div>
-    
 
-  </section>
 
-  <!-- City List Section -->
-  <section id="city-list"></section>
+    </section>
 
-  <!-- Second Page -->
-  <section id="second-page">
-    <button type="button" id="back-button" class="button hide">Go Back</button>
-    <div id="checklist-container hide"></div>
-    <div id="card-container"></div>
-  </section>
+    <!-- City List Section -->
+    <section id="city-list"></section>
 
-  <!-- Footer -->
-  <footer></footer>
+    <!-- Second Page -->
+    <section id="second-page" class="container">
+      <button type="button" id="back-button" class="button hide">Go Back</button>
+      <div id="checklist-container" class="hide"></div>
+      <div id="card-container" class="row justify-content-center"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer></footer>
 
   </div>
 
   <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
   <script src="./assets/js/script.js"></script>
 
 </body>
