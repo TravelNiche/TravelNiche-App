@@ -84,7 +84,7 @@ function searchLocation() {
   //If statement controls if the searchEl is empty or not to help creating buttons
   if (searchEl.value == '') {
     return;
-  }else{
+  } else {
     cityListEl.innerHTML = '';
     citiesLocal = localStorage.setItem(searchEl.value, '');
     createButtons();
@@ -103,18 +103,18 @@ function searchLocation() {
       console.log(data);
       cardContainerEl.innerHTML = '';
       checklistContainerEl.innerHTML = '';
-      
-      //If the search box is not empty, prints go back button and checkboxes
-    if (searchEl.value !== '') {
-        
-      backButtonEl.classList.remove('hide');
-      
-      //Checklist Creation Using Bulma
-      let checklistContainer = document.createElement('div');
-      secondPageEl.appendChild(checklistContainer);
 
-      checklist = 
-      `<input id='1' class='check' type="checkbox">
+      //If the search box is not empty, prints go back button and checkboxes
+      if (searchEl.value !== '') {
+
+        backButtonEl.classList.remove('hide');
+
+        //Checklist Creation Using Bulma
+        let checklistContainer = document.createElement('div');
+        secondPageEl.appendChild(checklistContainer);
+
+        checklist =
+          `<input id='1' class='check' type="checkbox">
         $
 
         <input id='2' class='check' type="checkbox">
@@ -127,13 +127,13 @@ function searchLocation() {
         $$$$
       `;
 
-      checklistContainer.innerHTML = checklist;
-      secondPageEl.appendChild(checklistContainer);
-      checklistContainerEl.appendChild(checklistContainer);
+        checklistContainer.innerHTML = checklist;
+        secondPageEl.appendChild(checklistContainer);
+        checklistContainerEl.appendChild(checklistContainer);
       }
 
       for (let i = 0; i < data.businesses.length; i++) {
-       
+
         for (let j = 0; j < data.businesses[i].categories.length; j++) {
           if (data.businesses[i].categories[j].title.includes('Bars')) {
 
@@ -149,7 +149,7 @@ function searchLocation() {
             let listOfBusinesses = document.createElement('div');
             secondPageEl.appendChild(listOfBusinesses);
 
-            
+
             // listOfBusinesses.textContent = barName[j] + barPhoneNumber[j] + barPrice[j] + barRating[j] + barURL[j] + barIsClosed[j] + barImage[j] + barAddress[j]; //gets the details of the businesses
 
             // if (barIsClosed) {
@@ -157,10 +157,10 @@ function searchLocation() {
             // }else{
             //   barStatus = 'Closed';
             // }
-            
+
             //Card creation using BootStrap 5.2.2 and Bulma
-            businessCard = 
-          `<div class="card" style="width: 22rem;">
+            businessCard =
+              `<div class="card" style="width: 22rem;">
             <img class="card-img-top" src="${barImage[j]}" alt="Business Image">
             <div class="card-body">
               <h5 class="card-title">${barName[j]}</h5>
@@ -174,76 +174,76 @@ function searchLocation() {
               <a style='text-decoration: none' href="${barURL[j]}" target="_blank" class="card-link">See in Yelp</a>
             </div>
           </div>`;
-         
 
-          listOfBusinesses.innerHTML = businessCard;
-          secondPageEl.appendChild(listOfBusinesses);
-          cardContainerEl.appendChild(listOfBusinesses);
-          
+
+            listOfBusinesses.innerHTML = businessCard;
+            secondPageEl.appendChild(listOfBusinesses);
+            cardContainerEl.appendChild(listOfBusinesses);
+
           }
 
 
           //function to get star symbols
           function getStars(rating) {
-          
+
             // Round to nearest half
             rating = Math.round(rating * 2) / 2;
             let output = [];
-          
+
             // Append all the filled whole stars
             for (var i = rating; i >= 1; i--)
               output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-          
+
             // If there is a half a star, append it
             if (i == .5) output.push('<i class="fa fa-star-half" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-          
+
             // Fill the empty stars
             for (let i = (5 - rating); i >= 1; i--)
               output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-          
+
             return output.join('');
-          
+
           }
-          
+
         }
-      
+
       }
       //only one checkbox is selected
-      $('input.check').on('change', function() {
-        $('input.check').not(this).prop('checked', false);  
-    });
-    
-    mainContainerEl.classList.add('hide');
-    backgroundBeerEl.classList.add('hide');
+      $('input.check').on('change', function () {
+        $('input.check').not(this).prop('checked', false);
+      });
 
-    //Gets the click data from checkboxes and refreshes the search again for each price range selector
-    $(document).on('click', '#1', function () {
-      isPriceClicked = true;
-      price = 1;
-      searchLocation();
-    })
-    $(document).on('click', '#2', function () {
-      isPriceClicked = true;
-      price = 2;
-      searchLocation();
-    })
-    $(document).on('click', '#3', function () {
-      isPriceClicked = true;
-      price = 3;
-      searchLocation();
-    })
-    $(document).on('click', '#4', function () {
-      isPriceClicked = true;
-      price = 4;
-      searchLocation();
-    })
+      mainContainerEl.classList.add('hide');
+      backgroundBeerEl.classList.add('hide');
+
+      //Gets the click data from checkboxes and refreshes the search again for each price range selector
+      $(document).on('click', '#1', function () {
+        isPriceClicked = true;
+        price = 1;
+        searchLocation();
+      })
+      $(document).on('click', '#2', function () {
+        isPriceClicked = true;
+        price = 2;
+        searchLocation();
+      })
+      $(document).on('click', '#3', function () {
+        isPriceClicked = true;
+        price = 3;
+        searchLocation();
+      })
+      $(document).on('click', '#4', function () {
+        isPriceClicked = true;
+        price = 4;
+        searchLocation();
+      })
 
 
     }).catch(error => console.log('error', error));
 
-  
+
 }
- 
+
 // //date picker
 // let dateRangePickerEl = document.querySelector(`[value="${moment().format('L')}"]`);
 // $(function () {
@@ -262,15 +262,15 @@ function goBack() {
 
 //Modal Creation Using Bulma
 document.addEventListener('DOMContentLoaded', () => {
-    
-  
+
+
   // Functions to open and close a modal
   function openModal($el) {
     if (searchEl.value !== '') {
       return;
     }
     $el.classList.add('is-active');
-    
+
   }
 
   function closeModal($el) {
@@ -322,10 +322,10 @@ function createButtons() {
     cityListLocal[i] = cityNames[i];
     cityButton = document.createElement('button');
     cityButtonEl = cityButton.classList.add('button');
-    cityButton.onclick = function(){getButtonValue(this)}; //Runs the getButtonValue(), if a city is clicked
+    cityButton.onclick = function () { getButtonValue(this) }; //Runs the getButtonValue(), if a city is clicked
     cityButtonEl = cityListEl.appendChild(cityButton);
-    cityButtonEl.textContent = cityListLocal[i];   
-}   
+    cityButtonEl.textContent = cityListLocal[i];
+  }
 }
 
 //Init function

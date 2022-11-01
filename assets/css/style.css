@@ -12,21 +12,25 @@
 }
 
 /* Background Image - 2nd Page */
-#background-bar{
+#background-bar {
     width: 100%;
     height: 100%;
 }
 
 /* Background Container */
-#background-container{
+#second-page {
     background: url('../images/barBackground.jpeg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 /* Body */
 body {
     /* background-image: url('TravelNiche-App/assets/images/BEER.gif'); */
     background-size: 100%;
-    background-repeat: repeat-y;
+    background-repeat: no-repeat round;
     background-attachment: fixed;
     height: 100%;
     width: 100%;
@@ -35,7 +39,7 @@ body {
 }
 
 /* 'Find Bars' Button */
-#find-button{
+#find-button {
     width: fit-content;
     justify-self: center;
     font-weight: bold;
@@ -98,7 +102,7 @@ body {
 .button {
     border-radius: 5px;
     padding: 5px;
-    
+
 }
 
 /* Buttons - Hover */
@@ -108,30 +112,46 @@ body {
     transition: 0.3s;
 }
 
+/* Dropdown Button
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Dropdown button on hover & focus */
+/* .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  } */
+*/
+
 /* Hide */
 .hide {
     display: none !important;
 }
 
 /* Cards */
-.card{
+.card {
     margin: 15px;
     width: 100%;
     height: 100%;
 }
 
 /* 'Go Back' Button */
-#back-button{
+#back-button {
     margin: 5px 15px 0 15px;
 }
 
 /* Card Images */
-.card-img-top{
+.card-img-top {
     height: -webkit-fill-available;
 }
 
 /* Checklist Container */
-#checklist-container{
+#checklist-container {
     color: #fff;
     background-color: #3c2f0d;
     font-size: large;
@@ -141,20 +161,19 @@ body {
 }
 
 /* Title */
-#title{
+#title {
     font-family: 'Lobster', cursive !important;
     font-size: xx-large;
     color: black;
 }
 
 /* City List */
-#city-list{
+#city-list {
     display: inline-grid;
     margin-top: 10px;
 }
 
 /* City List Buttons */
-#city-list button{
+#city-list button {
     margin-bottom: 5px
 }
-
