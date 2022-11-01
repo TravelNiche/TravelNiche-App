@@ -1,7 +1,7 @@
 # TravelNiche-App
 An application that allows users to randomly populate a daily planner based on their personal preferences and travel location.
 
-Will require a visit [API Access](cors-anywhere.herokuapp.com) to allow browser access to the Yelp Fusion API - workaround hopefully to come. The link will pop-up in the console.
+Will require a visit [API Access](https://cors-anywhere.herokuapp.com) to allow browser access to the Yelp Fusion API - workaround hopefully to come. The link will pop-up in the console.
 
 ## Deployed Website
 
