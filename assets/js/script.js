@@ -106,7 +106,8 @@ function searchLocation() {
       
       //If the search box is not empty, prints go back button and checkboxes
     if (searchEl.value !== '') {
-        
+      
+      checklistContainerEl.remove('hide');
       backButtonEl.classList.remove('hide');
       
       //Checklist Creation Using Bulma
