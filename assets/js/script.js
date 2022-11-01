@@ -81,6 +81,7 @@ function searchLocation() {
     yelpAPI = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${searchEl.value}&price=${price}`;
   }
 
+  
   //If statement controls if the searchEl is empty or not to help creating buttons
   if (searchEl.value == '') {
     return;
@@ -88,6 +89,7 @@ function searchLocation() {
     cityListEl.innerHTML = '';
     citiesLocal = localStorage.setItem(searchEl.value, '');
     createButtons();
+    
 
   }
 
@@ -103,6 +105,7 @@ function searchLocation() {
       console.log(data);
       cardContainerEl.innerHTML = '';
       checklistContainerEl.innerHTML = '';
+
 
       //If the search box is not empty, prints go back button and checkboxes
       if (searchEl.value !== '') {
@@ -183,6 +186,7 @@ function searchLocation() {
 
           }
 
+          checklistContainerEl.classList.remove('hide');
 
           //function to get star symbols
           function getStars(rating) {
