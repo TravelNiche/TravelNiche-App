@@ -29,7 +29,3 @@ Contributors:
 ## License
 
 Please refer to the LICENSE in the repo.
-<<<<<<< HEAD
-=======
-
->>>>>>> 7daf295b7790364b3430666e8477d3d066d7b87c
