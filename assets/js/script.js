@@ -106,7 +106,7 @@ function searchLocation() {
       console.log(data);
       cardContainerEl.innerHTML = '';
       checklistContainerEl.innerHTML = '';
-      document.getElementById('background-container').style.backgroundImage="url(/Users/yigitocak/bootcamp/MSU-VIRT-FSF-PT-09-2022-U-LOLC/TravelNiche-App/assets/images/barBackground.jpeg)"
+      document.getElementById('background-container').style.backgroundImage="url(./assets/images/barBackground.jpeg)"
 
 
 
