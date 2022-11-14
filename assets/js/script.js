@@ -54,7 +54,7 @@ function autoComplete() {
       $('#search-result').html(''); //clears the search result with every key action
       for (let i = 0; i < data.features.length; i++) {
         dResult.push(data.features[i].properties.address_line1 + ', ' + data.features[i].properties.address_line2)
-        $('#search-result').append('<option value=' + dResult[i] + '>' + dResult[i] + '</option>');
+        $('#search-result').append("<option class='overflow' value=" + dResult[i] + '>' + dResult[i] + "</option>");
       }
       $('#search-result').addClass('active');
       console.log(data);
@@ -82,6 +82,8 @@ function searchLocation() {
   }
 
   
+
+
   //If statement controls if the searchEl is empty or not to help creating buttons
   if (searchEl.value == '') {
     return;
@@ -89,7 +91,6 @@ function searchLocation() {
     cityListEl.innerHTML = '';
     citiesLocal = localStorage.setItem(searchEl.value, '');
     createButtons();
-    
 
   }
 
@@ -105,6 +106,8 @@ function searchLocation() {
       console.log(data);
       cardContainerEl.innerHTML = '';
       checklistContainerEl.innerHTML = '';
+      document.getElementById('background-container').style.backgroundImage="url(/Users/yigitocak/bootcamp/MSU-VIRT-FSF-PT-09-2022-U-LOLC/TravelNiche-App/assets/images/barBackground.jpeg)"
+
 
 
       //If the search box is not empty, prints go back button and checkboxes
